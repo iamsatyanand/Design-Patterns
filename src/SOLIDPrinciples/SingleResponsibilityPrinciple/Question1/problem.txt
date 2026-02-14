@@ -1,0 +1,18 @@
+Problem: Analyze the following User class and identify the SRP violations:
+public class User {
+    private String name;
+    private String email;
+
+    public void saveToDatabase() {
+        // Database logic
+    }
+
+    public void sendEmail() {
+        // Email sending logic
+    }
+
+    public String generateReport() {
+        // Report generation logic
+    }
+}
+Task: What are the SRP violations here and how would you refactor this class?

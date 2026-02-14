@@ -1,0 +1,23 @@
+Employee Management System
+Problem: The following Employee class violates SRP:
+public class Employee {
+    private String name;
+    private double salary;
+
+    public double calculatePay() {
+        // Complex payroll calculations
+    }
+
+    public void save() {
+        // Database operations
+    }
+
+    public String formatForReport() {
+        // Formatting logic for reports
+    }
+
+    public void sendPayslip() {
+        // Email sending logic
+    }
+}
+Task: How many responsibilities does this class have? Redesign it following SRP principles.
