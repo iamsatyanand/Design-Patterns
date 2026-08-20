@@ -1,5 +1,7 @@
 package BuilderPattern.Basic;
 
+import java.util.HashMap;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -40,6 +42,29 @@ public class Main {
                         // for n params 2^n possible combination which will be extremely unmanageable.
                         // also suppose firstname, lastname, email all of string type and firstname, lastname, password are also of string type then for this we can create on;y one parameters
             // 4) what if we add validation in setter but then we also have the invalid object during the object creation time till setter gets called
-        user3.setFirstName("Satya");
+        System.out.println(user3);
+
+
+        HashMap<String, Object> userData = new HashMap<>();
+        userData.put("firstName", "Satya");
+        userData.put("lastname", "Mishra");
+        userData.put("age", 20);
+        userData.put("email", "satya@gmail.com");
+        userData.put("password", "password");
+
+        // here the problem is
+        // HashMap<String, Object> approach sacrifices type safety
+        // example: userData.put("age", "twenty"); ----> will fail at runtime with a ClassCastException.
+        // we can also accidentally make a typo: userData.put("fristName", "Satya"); ----> userData.get("firstName") returns null
+        // There is also no compile-time guarantee that the required fields exist.
+//        HashMap<String, Object> userData = new HashMap<>();
+//        userData.put("firstName", "Satya");
+//        User4 user4 = new User4(userData);
+//        The constructor has to figure out that lastname, age, email, etc. are missing.
+
+        User4 user4 = new User4(userData);
+        System.out.println(user4);
+
+
     }
 }
