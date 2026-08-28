@@ -33,7 +33,7 @@ public class Main {
         // all fields are private plus we have getters and setters , also we have custom constructor which handles validation
         User3 user3 = new User3("satya", "mishra", 20, "satya@gmail.com", "password");
         // problems here
-            // 1) so many attributes passed to constructor, there fore we need to remenber the sewuence of parameters
+            // 1) so many attributes passed to constructor, there fore we need to remember the sequence of parameters
             // 2) adding new parameters becomes headache so client code will be less readable and code will be bloated and unmanageable
             // 3) if we have another non mandatory field where we have to keep validation if added then we have to add that field also in constructor and
                     // we have to pass null for those params which are not required always during object creation
@@ -65,6 +65,34 @@ public class Main {
         User4 user4 = new User4(userData);
         System.out.println(user4);
 
+
+        // what if somehow someone creates this key-value pair based object for us,
+        // we can leverage it and make a very clean class
+        // lets define a separate class which gives us a mapper object (lets call it a builder object)
+        // as his object is actually helping us to build another object
+        // this Builder class will contain all the properties of our main User class
+        // it will create a temporary object before we create our final User
+        // as we need to pass a builder object to our User constructor, so we need to have a builder object
+        // before we call a User constructor i.e. we need to create a builder object before we create a User object
+        // there is no problem in it Builder is like a helper class no impact of this in User object
+        // but keep in mind builder object should be clean i.e. there should not be bloated constructor of builder class
+        // this builder is not going to use a bloated constructor for object creation
+        // Instead we are going to use setter based validations in Builder class
+        // but we had seen already the problem with setter based validation i.e. bloated constructor, invalid object creation before actual object, also immutable object problem
+        // but here those problems of invalid object and immutability is gone here as its it not our user object
+        // builder need not be immutable as it is temporary object that is going to stay for sometime only
+        // benefit - since builder setter have validations so user constructor doesn't need to have any validations
+        // user constructor will be very clean
+
+        Builder builder = new Builder();
+        builder.setFirstName("Satya");
+        builder.setLastname("mishra");
+        builder.setAge(35);
+        builder.setEmail("Satya@xyz.com");
+        builder.setPassword("SatyaXYZ");
+
+        User5 user5 = new User5(builder);
+        System.out.println(user5);
 
     }
 }
